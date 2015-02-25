@@ -585,8 +585,8 @@ class tmhOAuth {
 
     // configure curl
     $c = curl_init();
-    curl_setopt_array($c, array(
-      // CURLOPT_USERAGENT      => $this->config['user_agent'],
+    $opts = array(
+      CURLOPT_USERAGENT      => $this->config['user_agent'],
       CURLOPT_CONNECTTIMEOUT => $this->config['curl_connecttimeout'],
       CURLOPT_TIMEOUT        => $this->config['curl_timeout'],
       CURLOPT_RETURNTRANSFER => true,
@@ -601,7 +601,10 @@ class tmhOAuth {
       CURLOPT_HEADERFUNCTION => array($this, 'curlHeader'),
       CURLOPT_HEADER         => false,
       CURLINFO_HEADER_OUT    => true,
-    ));
+    );
+
+    error_log(json_encode($opts));
+    curl_setopt_array($c, $opts);
 
     if ($this->config['curl_cainfo'] !== false)
       curl_setopt($c, CURLOPT_CAINFO, $this->config['curl_cainfo']);
