@@ -585,26 +585,20 @@ class tmhOAuth {
 
     // configure curl
     $c = curl_init();
-    $opts = array(
-      CURLOPT_USERAGENT      => $this->config['user_agent'],
-      CURLOPT_CONNECTTIMEOUT => $this->config['curl_connecttimeout'],
-      CURLOPT_TIMEOUT        => $this->config['curl_timeout'],
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_SSL_VERIFYPEER => $this->config['curl_ssl_verifypeer'],
-      CURLOPT_SSL_VERIFYHOST => $this->config['curl_ssl_verifyhost'],
 
-      CURLOPT_FOLLOWLOCATION => $this->config['curl_followlocation'],
-      CURLOPT_PROXY          => $this->config['curl_proxy'],
-      CURLOPT_ENCODING       => $this->config['curl_encoding'],
-      CURLOPT_URL            => $this->url,
-      // process the headers
-      CURLOPT_HEADERFUNCTION => array($this, 'curlHeader'),
-      CURLOPT_HEADER         => false,
-      CURLINFO_HEADER_OUT    => true,
-    );
-
-    error_log(json_encode($opts));
-    curl_setopt_array($c, $opts);
+    curl_setopt($c, CURLOPT_USERAGENT, $this->config['user_agent']);
+    curl_setopt($c, CURLOPT_CONNECTTIMEOUT, $this->config['curl_connecttimeout']);
+    curl_setopt($c, CURLOPT_TIMEOUT, $this->config['curl_timeout']);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($c, CURLOPT_SSL_VERIFYPEER, $this->config['curl_ssl_verifypeer']);
+    curl_setopt($c, CURLOPT_SSL_VERIFYHOST, $this->config['curl_ssl_verifyhost']);
+    curl_setopt($c, CURLOPT_FOLLOWLOCATION, $this->config['curl_followlocation']);
+    curl_setopt($c, CURLOPT_PROXY, $this->config['curl_proxy']);
+    curl_setopt($c, CURLOPT_ENCODING, $this->config['curl_encoding']);
+    curl_setopt($c, CURLOPT_URL, $this->url);
+    curl_setopt($c, CURLOPT_HEADERFUNCTION, array($this, 'curlHeader'));
+    curl_setopt($c, CURLOPT_HEADER, false);
+    curl_setopt($c, CURLINFO_HEADER_OUT, true);
 
     if ($this->config['curl_cainfo'] !== false)
       curl_setopt($c, CURLOPT_CAINFO, $this->config['curl_cainfo']);
