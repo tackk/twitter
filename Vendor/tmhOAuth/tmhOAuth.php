@@ -586,7 +586,7 @@ class tmhOAuth {
     // configure curl
     $c = curl_init();
     curl_setopt_array($c, array(
-      CURLOPT_USERAGENT      => $this->config['user_agent'],
+      // CURLOPT_USERAGENT      => $this->config['user_agent'],
       CURLOPT_CONNECTTIMEOUT => $this->config['curl_connecttimeout'],
       CURLOPT_TIMEOUT        => $this->config['curl_timeout'],
       CURLOPT_RETURNTRANSFER => true,
