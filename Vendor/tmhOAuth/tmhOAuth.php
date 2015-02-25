@@ -593,7 +593,6 @@ class tmhOAuth {
     curl_setopt($c, CURLOPT_SSL_VERIFYPEER, $this->config['curl_ssl_verifypeer']);
     curl_setopt($c, CURLOPT_SSL_VERIFYHOST, $this->config['curl_ssl_verifyhost']);
     curl_setopt($c, CURLOPT_FOLLOWLOCATION, $this->config['curl_followlocation']);
-    curl_setopt($c, CURLOPT_PROXY, $this->config['curl_proxy']);
     curl_setopt($c, CURLOPT_ENCODING, $this->config['curl_encoding']);
     curl_setopt($c, CURLOPT_URL, $this->url);
     curl_setopt($c, CURLOPT_HEADERFUNCTION, array($this, 'curlHeader'));
